@@ -41,7 +41,7 @@
 
 // indexing
 #define NUMMED_SUBSEC(i, t)     "%s.\t%s", i, t
-#define INT_LEN(i)              floor(log10(fabs(i))) + 1
+#define INT_LEN(i)              5// floor(log10(fabs(i))) + 1
 
 #define UPPER_A_ASCII           65
 #define UPPER_Z_ASCII           90
@@ -57,7 +57,14 @@ typedef enum {
     low_alpha
 } index_type;
 
-void write_menu(const char*, int, labels [], index_type, const char*);
+struct body {
+    int subsec_quan;
+    labels subsec;
+    index_type style;
+    int start_index;
+};
+
+void write_menu(const char*, struct body, const char*);
 void center_print(const char*, int, char);
 char* trans_index(index_type, int, char*);
 

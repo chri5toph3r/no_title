@@ -1,22 +1,23 @@
-#include "..\header_files\screen.h"
+#include "../header_files/screen.h"
 
 
-void write_menu(const char *header, int subsec_quan, labels subsec[], index_type style, const char *footer) {
+void write_menu(const char *header, struct body menu, const char *footer) {
+    printf(CLEAR_SCREEN);
     // HEADER
     center_print(header, SCREEN_WIDTH, '=');
     printf("\n");
     
     // BODY
     int line;
-    for (line=1; line<=subsec_quan; line++) {
+    for (line=menu.start_index+1; line<=menu.subsec_quan; line++) {
         if (!(IS_N_FILLED(line))) { break; }
         char index_str[10];
-        printf(NUMMED_SUBSEC(trans_index(style, line, index_str), subsec[line-1]));
+        printf(NUMMED_SUBSEC(trans_index(menu.style, line, index_str), menu.subsec[line-1]));
         printf("\n");
     }
-    if (IS_N_FILLED(subsec_quan)) {
+    if (IS_N_FILLED(menu.subsec_quan - menu.start_index)) {
         int i;
-        for (line=subsec_quan; line<SCREEN_HEIGHT-NOT_BODY_LINES; line++) {
+        for (line=menu.subsec_quan - menu.start_index; line<SCREEN_HEIGHT- NOT_BODY_LINES; line++) {
             for (i=0; i<SCREEN_WIDTH; i++) {
                 printf(FILL_CHAR);
             }
@@ -27,6 +28,8 @@ void write_menu(const char *header, int subsec_quan, labels subsec[], index_type
     // FOOTER
     center_print(footer, SCREEN_WIDTH/2, ' ');
     printf("\n");
+
+    scanf("%i", &menu.start_index);
 }
 
 void center_print(const char *text, int width, char symbol) {
@@ -39,9 +42,9 @@ void center_print(const char *text, int width, char symbol) {
     }
     margin[margin_len] = '\0';
     
-    printf(margin);
-    printf(text);
-    printf(margin);
+    printf("%s", margin);
+    printf("%s", text);
+    printf("%s", margin);
     if ((SCREEN_WIDTH - strlen(text)) % 2) { printf("%c", symbol); }
 }
 

@@ -1,4 +1,4 @@
-#include "..\header_files\settings.h"
+#include "../header_files/settings.h"
 
 labels options[OPTIONS_QUAN] = {
     "GENERAL",
@@ -12,6 +12,13 @@ int settings_menu() {
     const char* header = "[ SETTINGS ]";
     const char* footer =  "created by kk13";
     index_type style = arabic_num;
-    write_menu(header, OPTIONS_QUAN, options, style, footer);
-    return 1;
+    struct body sett_body = {
+        OPTIONS_QUAN,
+        options,
+        style,
+        0
+    };
+    
+    write_menu(header, sett_body, footer);
+    return 0;
 }
