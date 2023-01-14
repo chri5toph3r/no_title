@@ -37,7 +37,7 @@
 #define MARGIN_LEN(w, t)        (w - strlen(t)) / 2
 #define FILL_CHAR               "x"
 #define NOT_BODY_LINES          2
-#define IS_N_FILLED(q)          (SCREEN_HEIGHT - NOT_BODY_LINES - q) > 0
+#define LINES_LEFT(q)           SCREEN_HEIGHT - NOT_BODY_LINES - q
 
 // indexing
 #define NUMMED_SUBSEC(i, t)     "%s.\t%s", i, t

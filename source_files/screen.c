@@ -2,7 +2,7 @@
 
 
 void write_menu(const char *header, struct body menu, const char *footer) {
-    // printf(CLEAR_SCREEN);
+    printf(CLEAR_SCREEN);
     // HEADER
     center_print(header, SCREEN_WIDTH, '=');
     printf("\n");
@@ -13,21 +13,38 @@ void write_menu(const char *header, struct body menu, const char *footer) {
 
     // BODY
     int line;
-    for (line=menu.top_index+1; line<=menu.subsec_quan; line++) {
-        if (!(IS_N_FILLED(line))) { break; }
-        char index_str[10];
-        printf(NUMMED_SUBSEC(trans_index(menu.style, line, index_str), menu.subsec[line-1]));
-        printf("\n");
-    }
-    if (IS_N_FILLED(menu.subsec_quan - menu.top_index)) {
-        int i;
-        for (line=menu.subsec_quan - menu.top_index; line<SCREEN_HEIGHT- NOT_BODY_LINES; line++) {
-            for (i=0; i<SCREEN_WIDTH; i++) {
-                printf(FILL_CHAR);
+    int i;
+    for (line=0; line<SCREEN_HEIGHT - NOT_BODY_LINES; line++) {
+        if (LINES_LEFT(line) > 0) {
+            if (line < (menu.subsec_quan - menu.top_index)) {
+                char index_str[10];
+                printf(NUMMED_SUBSEC(
+                    trans_index(menu.style, menu.top_index+line+1, index_str), 
+                    menu.subsec[menu.top_index+line])
+                    );
+            } else {
+                for (i=0; i<SCREEN_WIDTH; i++) {
+                    printf(FILL_CHAR);
+                }
             }
             printf("\n");
         }
     }
+    // for (line=menu.top_index+1; line<=menu.subsec_quan; line++) {
+    //     if (LINES_LEFT(line) <= 0) { break; }
+    //     char index_str[10];
+    //     printf(NUMMED_SUBSEC(trans_index(menu.style, line, index_str), menu.subsec[line-1]));
+    //     printf("\n");
+    // }
+    // if (LINES_LEFT(menu.subsec_quan - menu.top_index) != 0) {
+    //     int i;
+    //     for (line=menu.subsec_quan - menu.top_index; line<SCREEN_HEIGHT - NOT_BODY_LINES; line++) {
+    //         for (i=0; i<SCREEN_WIDTH; i++) {
+    //             printf(FILL_CHAR);
+    //         }
+    //         printf("\n");
+    //     }
+    // }
 
     // FOOTER
     center_print(footer, SCREEN_WIDTH/2, ' ');

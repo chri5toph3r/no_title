@@ -19,6 +19,7 @@ int settings_menu() {
     write_menu(MENU_HEADER, sett_body, MENU_FOOTER);
     
     scanf("%i", &sett_body.top_index);
+    if (!sett_body.top_index) return -1;
     sett_body.top_index --;
 
     return 0;

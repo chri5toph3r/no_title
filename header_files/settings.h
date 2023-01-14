@@ -14,7 +14,7 @@
 
 #define OPTIONS_QUAN    4
 #define MENU_HEADER     "[ SETTINGS ]"
-#define MENU_FOOTER     "created by kk13"
+#define MENU_FOOTER     "type 0 to exit"
 
 labels options[OPTIONS_QUAN];
 struct body sett_body;
