@@ -35,13 +35,13 @@
 // general
 #define CLEAR_SCREEN            "\e[1;1H\e[2J"
 #define MARGIN_LEN(w, t)        (w - strlen(t)) / 2
-#define FILL_CHAR               "x"
-#define NOT_BODY_LINES          2
+#define BLANK_CHAR              "x"
+#define BODY_LINES              SCREEN_HEIGHT - 2
 #define LINES_LEFT(q)           SCREEN_HEIGHT - NOT_BODY_LINES - q
 
 // indexing
 #define NUMMED_SUBSEC(i, t)     "%s.\t%s", i, t
-#define INT_LEN(i)              5// floor(log10(fabs(i))) + 1
+#define INT_LEN(i)              floor(log10(fabs(i))) + 1
 
 #define UPPER_A_ASCII           65
 #define UPPER_Z_ASCII           90
