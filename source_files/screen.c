@@ -2,22 +2,26 @@
 
 
 void write_menu(const char *header, struct body menu, const char *footer) {
-    printf(CLEAR_SCREEN);
+    // printf(CLEAR_SCREEN);
     // HEADER
     center_print(header, SCREEN_WIDTH, '=');
     printf("\n");
-    
+
+    if ((menu.top_index < 0) || (menu.top_index > menu.subsec_quan)) {
+        menu.top_index = 0;
+    }
+
     // BODY
     int line;
-    for (line=menu.start_index+1; line<=menu.subsec_quan; line++) {
+    for (line=menu.top_index+1; line<=menu.subsec_quan; line++) {
         if (!(IS_N_FILLED(line))) { break; }
         char index_str[10];
         printf(NUMMED_SUBSEC(trans_index(menu.style, line, index_str), menu.subsec[line-1]));
         printf("\n");
     }
-    if (IS_N_FILLED(menu.subsec_quan - menu.start_index)) {
+    if (IS_N_FILLED(menu.subsec_quan - menu.top_index)) {
         int i;
-        for (line=menu.subsec_quan - menu.start_index; line<SCREEN_HEIGHT- NOT_BODY_LINES; line++) {
+        for (line=menu.subsec_quan - menu.top_index; line<SCREEN_HEIGHT- NOT_BODY_LINES; line++) {
             for (i=0; i<SCREEN_WIDTH; i++) {
                 printf(FILL_CHAR);
             }
@@ -28,8 +32,6 @@ void write_menu(const char *header, struct body menu, const char *footer) {
     // FOOTER
     center_print(footer, SCREEN_WIDTH/2, ' ');
     printf("\n");
-
-    scanf("%i", &menu.start_index);
 }
 
 void center_print(const char *text, int width, char symbol) {

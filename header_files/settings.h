@@ -13,6 +13,11 @@
 #define SETTINGS_H
 
 #define OPTIONS_QUAN    4
+#define MENU_HEADER     "[ SETTINGS ]"
+#define MENU_FOOTER     "created by kk13"
+
+labels options[OPTIONS_QUAN];
+struct body sett_body;
 
 int settings_menu();
 

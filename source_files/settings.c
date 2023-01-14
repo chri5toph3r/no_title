@@ -7,18 +7,19 @@ labels options[OPTIONS_QUAN] = {
     "LANGUAGE"
 };
 
+struct body sett_body = {
+    OPTIONS_QUAN,
+    options,
+    arabic_num,
+    0,
+};
+
 
 int settings_menu() {
-    const char* header = "[ SETTINGS ]";
-    const char* footer =  "created by kk13";
-    index_type style = arabic_num;
-    struct body sett_body = {
-        OPTIONS_QUAN,
-        options,
-        style,
-        0
-    };
+    write_menu(MENU_HEADER, sett_body, MENU_FOOTER);
     
-    write_menu(header, sett_body, footer);
+    scanf("%i", &sett_body.top_index);
+    sett_body.top_index --;
+
     return 0;
 }

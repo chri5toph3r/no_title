@@ -59,9 +59,9 @@ typedef enum {
 
 struct body {
     int subsec_quan;
-    labels subsec;
+    labels *subsec;
     index_type style;
-    int start_index;
+    int top_index;
 };
 
 void write_menu(const char*, struct body, const char*);
