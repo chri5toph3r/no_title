@@ -1,43 +1,39 @@
 #include "../header_files/screen.h"
 
 
-void write_menu(const char *header, struct body menu, const char *footer) {
-    printf(CLEAR_SCREEN);
+void write_menu(const char *header, struct body body, const char *footer) {
+    cls();
     // HEADER
     center_print(header, SCREEN_WIDTH, '=');
     printf("\n");
 
-    if ((menu.top_index < 0) || (menu.top_index > menu.subsec_quan)) {
-        menu.top_index = 0;
-    }
-
     // BODY
-    int written_lines = menu.subsec_quan - menu.top_index;
+    if ((body.top_index < 0) || (body.top_index > body.subsec_quan)) {
+        body.top_index = 0;
+    }
+    int written_lines = body.subsec_quan - body.top_index;
+    if (written_lines > BODY_LINES) written_lines = BODY_LINES;
     int blank_lines = BODY_LINES - written_lines;
 
     int line;
     if (written_lines > 0) {
         for (line=0; line<written_lines; line++) {
-            int index = menu.top_index + line;
-            char index_str[10];
-            printf(NUMMED_SUBSEC(
-                trans_index(menu.style, index+1, index_str), 
-                menu.subsec[index]));
+            print_subsec(line, body);
             printf("\n");
         }
     }
     if (blank_lines > 0) {
-        int i;
         for (line=0; line<blank_lines; line++) {
-            for (i=0; i<SCREEN_WIDTH; i++) {
-                printf(BLANK_CHAR);
-            }
+            print_blank_line(body.width);
             printf("\n");
         }
     }
 
     // FOOTER
     center_print(footer, SCREEN_WIDTH/2, ' ');
+    char right_footer[SCREEN_WIDTH/2];
+    snprintf(right_footer, SCREEN_WIDTH/2, "%i options", body.subsec_quan);
+    center_print(right_footer, SCREEN_WIDTH/2, ' ');
     printf("\n");
 }
 
@@ -61,4 +57,23 @@ char* trans_index(index_type style, int index, char *r_str) {
     if (INT_LEN(index) > 10) { return "0"; }
     snprintf(r_str, 10, "%d", index);
     return r_str;
+}
+
+void print_subsec(int line, struct body body) {
+    int index = body.top_index + line;
+    char index_str[10];
+    printf(NUMMED_SUBSEC(
+        trans_index(body.style, index+1, index_str), 
+        body.subsec[index]));
+}
+
+void print_blank_line(int width) {
+    int i;
+    for (i=0; i<width; i++) {
+        printf(BLANK_CHAR);
+    }
+}
+
+void cls() {
+    printf(CLEAR_SCREEN);
 }

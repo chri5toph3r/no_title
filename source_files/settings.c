@@ -1,5 +1,21 @@
 #include "../header_files/settings.h"
 
+
+txt header_txt[] = {{
+    HEADER_LENGTH,
+    HEADER_TXT,
+    HEADER_ALIGN, 
+    HEADER_SEP
+}};
+
+struct texts_line sett_header = {
+    SCREEN_WIDTH,
+    1,
+    header_txt,
+    HEADER_ALIGN,
+    HEADER_SEP
+};
+
 labels options[OPTIONS_QUAN] = {
     "GENERAL",
     "GRAPHICS",
@@ -8,18 +24,19 @@ labels options[OPTIONS_QUAN] = {
 };
 
 struct body sett_body = {
+    SCREEN_WIDTH,
     OPTIONS_QUAN,
     options,
-    arabic_num,
-    0,
+    BODY_DEFAULT_TOP,
+    BODY_ALIGN,
+    BODY_STYLE
 };
 
-
 int settings_menu() {
-    write_menu(MENU_HEADER, sett_body, MENU_FOOTER);
+    write_menu(HEADER_TXT, sett_body, FOOTER_TXT);
     
     scanf("%i", &sett_body.top_index);
-    if (!sett_body.top_index) return -1;
+    if (sett_body.top_index < 1) return -sett_body.top_index;
     sett_body.top_index --;
 
     return 0;

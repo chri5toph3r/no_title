@@ -49,23 +49,12 @@
 #define LOWER_Z_ASCII           122
 ////////////////////////////////////////
 
-typedef enum {
-    arabic_num,
-    roman_upp_num,
-    roman_low_num,
-    upp_alpha,
-    low_alpha
-} index_type;
-
-struct body {
-    int subsec_quan;
-    labels *subsec;
-    index_type style;
-    int top_index;
-};
 
 void write_menu(const char*, struct body, const char*);
 void center_print(const char*, int, char);
 char* trans_index(index_type, int, char*);
+void print_subsec(int, struct body);
+void print_blank_line(int);
+void cls();
 
 #endif // SCREEN_H

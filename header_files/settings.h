@@ -12,12 +12,28 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#define OPTIONS_QUAN    4
-#define MENU_HEADER     "[ SETTINGS ]"
-#define MENU_FOOTER     "type 0 to exit"
+#define HEADER_LENGTH       13
+#define HEADER_TXT          "[ SETTINGS ]"
+#define HEADER_ALIGN        CENTER
+#define HEADER_SEP          '='
+
+#define OPTIONS_QUAN        4
+#define BODY_ALIGN          LEFT
+#define BODY_STYLE          ARABIC_NUM
+#define BODY_DEFAULT_TOP    0
+
+#define FOOTER_TXT          "type neg num to exit"
+
+
+txt header_txt[];
+struct texts_line sett_header;
 
 labels options[OPTIONS_QUAN];
 struct body sett_body;
+
+txt footer_txt;
+struct texts_line sett_footer;
+
 
 int settings_menu();
 
