@@ -1,15 +1,15 @@
 #include "../header_files/settings.h"
 
 
-txt header_txt[] = {{
-    HEADER_LENGTH,
+txt header_txt[HEADER_TXTS_Q] = {{
+    HEADER_WIDTH,
     HEADER_TXT,
     HEADER_ALIGN, 
     HEADER_SEP
 }};
 struct texts_line sett_header = {
     SCREEN_WIDTH,
-    1,
+    HEADER_TXTS_Q,
     header_txt,
     HEADER_ALIGN,
     HEADER_SEP
@@ -30,23 +30,23 @@ struct body sett_body = {
     BODY_STYLE
 };
 
-txt footer_txt[] = {
+txt footer_txt[2] = {
     {
-        L_FOOTER_LENGTH,
+        L_FOOTER_WIDTH,
         L_FOOTER_TXT,
         FOOTER_ALIGN, 
         FOOTER_SEP
     },
     {
-        R_FOOTER_LENGTH,
-        L_FOOTER_TXT,
+        R_FOOTER_WIDTH,
+        R_FOOTER_TXT(OPTIONS_QUAN),
         FOOTER_ALIGN, 
         FOOTER_SEP
     }
 };
 struct texts_line sett_footer = {
     SCREEN_WIDTH,
-    1,
+    FOOTER_TXTS_Q,
     footer_txt,
     FOOTER_ALIGN,
     FOOTER_SEP
@@ -54,7 +54,7 @@ struct texts_line sett_footer = {
 
 
 int settings_menu() {
-    write_menu(HEADER_TXT, sett_body, L_FOOTER_TXT);
+    write_menu(sett_header, sett_body, sett_footer);
     
     scanf("%i", &sett_body.top_index);
     if (sett_body.top_index < 1) return -sett_body.top_index;

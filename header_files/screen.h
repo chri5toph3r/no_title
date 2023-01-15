@@ -49,11 +49,11 @@
 ////////////////////////////////////////
 
 
-void write_menu(const char*, struct body, const char*);
+void write_menu(struct texts_line, struct body, struct texts_line);
 void print_subsec(int, struct body);
 void print_blank_line(int);
-void center_print(const char*, int, char);
-char* trans_index(index_type, int, char*);
+char* center(char*, const char*, int, char);
+char* trans_index(char*, index_type, int);
 void cls();
 
 #endif // SCREEN_H

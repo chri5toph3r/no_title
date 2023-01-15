@@ -21,8 +21,8 @@ typedef enum {
 struct txt {
     int width;
     const char *content;
-    align txt_align;
-    char txt_sep;
+    align align;
+    char sep;
 };
 typedef struct txt txt;
 
@@ -30,8 +30,8 @@ struct texts_line {
     int width;
     int texts_quan;
     txt *texts;
-    align line_align;
-    char line_sep;
+    align align;    // these won't be used for now, center_print() needs to be just center, so that there are strings that can be in fact centered
+    char sep;       // these won't be used for now, center_print() needs to be just center, so that there are strings that can be in fact centered
 };
 
 struct body {
