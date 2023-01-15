@@ -36,7 +36,6 @@
 #define CLEAR_SCREEN            "\e[1;1H\e[2J"
 #define MARGIN_LEN(w, t)        (w - strlen(t)) / 2
 #define BLANK_CHAR              "x"
-#define BODY_LINES              SCREEN_HEIGHT - 2
 #define LINES_LEFT(q)           SCREEN_HEIGHT - NOT_BODY_LINES - q
 
 // indexing
@@ -51,10 +50,10 @@
 
 
 void write_menu(const char*, struct body, const char*);
-void center_print(const char*, int, char);
-char* trans_index(index_type, int, char*);
 void print_subsec(int, struct body);
 void print_blank_line(int);
+void center_print(const char*, int, char);
+char* trans_index(index_type, int, char*);
 void cls();
 
 #endif // SCREEN_H

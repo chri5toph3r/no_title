@@ -7,7 +7,6 @@ txt header_txt[] = {{
     HEADER_ALIGN, 
     HEADER_SEP
 }};
-
 struct texts_line sett_header = {
     SCREEN_WIDTH,
     1,
@@ -22,7 +21,6 @@ labels options[OPTIONS_QUAN] = {
     "SOUND",
     "LANGUAGE"
 };
-
 struct body sett_body = {
     SCREEN_WIDTH,
     OPTIONS_QUAN,
@@ -32,8 +30,31 @@ struct body sett_body = {
     BODY_STYLE
 };
 
+txt footer_txt[] = {
+    {
+        L_FOOTER_LENGTH,
+        L_FOOTER_TXT,
+        FOOTER_ALIGN, 
+        FOOTER_SEP
+    },
+    {
+        R_FOOTER_LENGTH,
+        L_FOOTER_TXT,
+        FOOTER_ALIGN, 
+        FOOTER_SEP
+    }
+};
+struct texts_line sett_footer = {
+    SCREEN_WIDTH,
+    1,
+    footer_txt,
+    FOOTER_ALIGN,
+    FOOTER_SEP
+};
+
+
 int settings_menu() {
-    write_menu(HEADER_TXT, sett_body, FOOTER_TXT);
+    write_menu(HEADER_TXT, sett_body, L_FOOTER_TXT);
     
     scanf("%i", &sett_body.top_index);
     if (sett_body.top_index < 1) return -sett_body.top_index;

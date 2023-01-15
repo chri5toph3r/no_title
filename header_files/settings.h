@@ -22,7 +22,12 @@
 #define BODY_STYLE          ARABIC_NUM
 #define BODY_DEFAULT_TOP    0
 
-#define FOOTER_TXT          "type neg num to exit"
+#define L_FOOTER_LENGTH     SCREEN_WIDTH/2
+#define L_FOOTER_TXT        "type neg num to exit"
+#define R_FOOTER_LENGTH     SCREEN_WIDTH/2
+#define R_FOOTER_TXT(q)     "%i options", q
+#define FOOTER_ALIGN        CENTER
+#define FOOTER_SEP          ' '
 
 
 txt header_txt[];
@@ -31,7 +36,7 @@ struct texts_line sett_header;
 labels options[OPTIONS_QUAN];
 struct body sett_body;
 
-txt footer_txt;
+txt footer_txt[];
 struct texts_line sett_footer;
 
 
