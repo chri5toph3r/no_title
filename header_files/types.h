@@ -2,7 +2,7 @@
 #define TYPES_H
 
 typedef int (*functions)(void);
-typedef const char *labels;
+typedef char *labels;
 
 typedef enum {
     LEFT,
@@ -18,20 +18,20 @@ typedef enum {
     LOW_ALPHA
 } index_type;
 
-struct txt {
+struct item {
     int width;
-    const char *content;
+    char *content;
     align align;
     char sep;
 };
-typedef struct txt txt;
+typedef struct item item;
 
-struct texts_line {
+struct container {
     int width;
     int texts_quan;
-    txt *texts;
-    align align;    // these won't be used for now, center_print() needs to be just center, so that there are strings that can be in fact centered
-    char sep;       // these won't be used for now, center_print() needs to be just center, so that there are strings that can be in fact centered
+    item *texts;
+    align align;
+    char sep;
 };
 
 struct body {
@@ -42,4 +42,5 @@ struct body {
     align alignment;
     index_type style;
 };
+
 #endif // TYPES_H

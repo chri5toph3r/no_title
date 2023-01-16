@@ -27,23 +27,24 @@
 #define L_FOOTER_WIDTH      SCREEN_WIDTH/2
 #define L_FOOTER_TXT        "type neg num to exit"
 #define R_FOOTER_WIDTH      SCREEN_WIDTH/2
-#define R_FOOTER_TXT(q)     "x options"
+#define R_FOOTER_TXT        " options"
 #define FOOTER_ALIGN        CENTER
 #define FOOTER_SEP          ' '
 
 
-txt header_txt[HEADER_TXTS_Q];
-struct texts_line sett_header;
+item header_txt[HEADER_TXTS_Q];
+struct container sett_header;
 
 labels options[OPTIONS_QUAN];
 struct body sett_body;
 
-txt footer_txt[2];
-struct texts_line sett_footer;
+item footer_txt[2];
+struct container sett_footer;
 
-struct texts_line test;
+struct container test;
 
 
+void set_opt_meter(char*);
 int settings_menu();
 
 #endif // SETTINGS_H

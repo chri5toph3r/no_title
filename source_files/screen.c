@@ -1,7 +1,7 @@
 #include "../header_files/screen.h"
 
 
-void write_menu(struct texts_line header, struct body body, struct texts_line footer) {
+void write_menu(struct container header, struct body body, struct container footer) {
     cls();
     int body_lines = SCREEN_HEIGHT - (header.width > 0) - (footer.width > 0);
     // HEADER
@@ -49,7 +49,7 @@ void write_menu(struct texts_line header, struct body body, struct texts_line fo
     }
 }
 
-// void print_texts_line(struct texts_line line) {}
+// void print_texts_line(struct container line) {}
 
 // void print_body(struct body body) {}
 

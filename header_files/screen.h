@@ -49,7 +49,7 @@
 ////////////////////////////////////////
 
 
-void write_menu(struct texts_line, struct body, struct texts_line);
+void write_menu(struct container, struct body, struct container);
 void print_subsec(int, struct body);
 void print_blank_line(int);
 char* center(char*, const char*, int, char);
