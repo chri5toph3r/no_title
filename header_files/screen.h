@@ -48,12 +48,22 @@
 #define LOWER_Z_ASCII           122
 ////////////////////////////////////////
 
+// menus
+void write_subsec_menu(struct container, struct body, struct container);
 
-void write_menu(struct container, struct body, struct container);
+// functions for printing elements of menu
+void print_body(int, struct body);
+char* get_container_str(char*, struct container);
+
+// oneline printing functions
 void print_subsec(int, struct body);
 void print_blank_line(int);
+
+// very low lv functions
 char* center(char*, const char*, int, char);
 char* trans_index(char*, index_type, int);
+
+// pretty much a makro
 void cls();
 
 #endif // SCREEN_H

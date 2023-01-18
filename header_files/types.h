@@ -4,13 +4,15 @@
 typedef int (*functions)(void);
 typedef char *labels;
 
-typedef enum {
+typedef enum
+{
     LEFT,
     CENTER,
     RIGHT
 } align;
 
-typedef enum {
+typedef enum
+{
     ARABIC_NUM,
     ROMAN_UPP_NUM,
     ROMAN_LOW_NUM,
@@ -18,7 +20,8 @@ typedef enum {
     LOW_ALPHA
 } index_type;
 
-struct item {
+struct item
+{
     int width;
     char *content;
     align align;
@@ -26,7 +29,8 @@ struct item {
 };
 typedef struct item item;
 
-struct container {
+struct container
+{
     int width;
     int texts_quan;
     item *texts;
@@ -34,7 +38,8 @@ struct container {
     char sep;
 };
 
-struct body {
+struct body
+{
     int width;
     int subsec_quan;
     labels *subsec;

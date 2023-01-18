@@ -52,15 +52,17 @@ struct container sett_footer = {
     FOOTER_SEP
 };
 
-void set_opt_meter(char *buffer) {
+void set_opt_meter(char *buffer)
+{
     snprintf(buffer, R_FOOTER_WIDTH, "%i%s", OPTIONS_QUAN, R_FOOTER_TXT);
     sett_footer.texts[1].content = buffer;
 }
 
-int settings_menu() {
+int settings_menu()
+{
     char buffer[R_FOOTER_WIDTH];
     set_opt_meter(buffer);
-    write_menu(sett_header, sett_body, sett_footer);
+    write_subsec_menu(sett_header, sett_body, sett_footer);
     
     scanf("%i", &sett_body.top_index);
     if (sett_body.top_index < 1) return -sett_body.top_index;
