@@ -32,7 +32,7 @@
 
 #define MENUS_QUAN      1
 functions menus[1] = {
-    &settings_menu
+    &_settings_menu
 };
 
 int main(int, char const*[]);

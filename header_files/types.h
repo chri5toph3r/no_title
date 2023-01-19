@@ -13,6 +13,7 @@ typedef enum
 
 typedef enum
 {
+    NONE,
     ARABIC_NUM,
     ROMAN_UPP_NUM,
     ROMAN_LOW_NUM,
@@ -20,16 +21,16 @@ typedef enum
     LOW_ALPHA
 } index_type;
 
-struct item
+struct Item
 {
     int width;
     char *content;
     align align;
     char sep;
 };
-typedef struct item item;
+typedef struct Item item;
 
-struct container
+struct Container
 {
     int width;
     int texts_quan;
@@ -38,7 +39,7 @@ struct container
     char sep;
 };
 
-struct body
+struct Body
 {
     int width;
     int subsec_quan;
