@@ -1,12 +1,20 @@
 #include "../header_files/screen.h"
 
+/*
+TODO: handling height in all writing functions
+TODO: not yet sure how to do it, but ill try my best
 
+TODO: handling one dimension more sure will be tricky, hope i'll be able to pull it off
+*/
+
+
+// TODO: writemenu should be merged
 void write_menu(struct Container header, struct Body body)
 {
     cls();
     // TITLE
     char temp_cont[SCREEN_WIDTH+1];
-    // to fun: print_title()
+    // TODO: add height to texts and containers, merge two menu writing functions
     get_cont_str(temp_cont, header);
     printf("\n%s\n\n", temp_cont);
     
@@ -38,6 +46,7 @@ void write_subsec_menu(struct Container header, struct Body body, struct Contain
     }
 }
 
+// TODO: get_line/print_line | should go below print_container :down
 char* get_cont_str(char *cont_str, struct Container cont)
 {
     if (cont.width > 0)
@@ -61,6 +70,7 @@ char* get_cont_str(char *cont_str, struct Container cont)
     return cont_str;
 }
 
+// TODO: print_container
 void print_body(int height, struct Body body)
 {
     // guard for incorrect top_index value
@@ -88,6 +98,8 @@ void print_body(int height, struct Body body)
         }
     }
 }
+
+// :here print_line
 
 void print_subsec(int line, struct Body body) {
     int index = body.top_index + line;

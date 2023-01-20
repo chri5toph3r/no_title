@@ -51,16 +51,17 @@
 ////////////////////////////////////////
 
 // menus
+// TODO: writemenu should be merged
 void write_menu(struct Container, struct Body);
 void write_subsec_menu(struct Container, struct Body, struct Container);
 
-// print container
-// TODO: void print_title();
+// print container |line|
 char* get_cont_str(char*, struct Container);
 
-// print body
+// print body |container|
 void print_body(int, struct Body);
-void print_subsec(int, struct Body);
+// :here print_line
+void print_subsec(int, struct Body); // |item|
 char* trans_index(char*, index_type, int);
 void print_blank_line(int);
 
