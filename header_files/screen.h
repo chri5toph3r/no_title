@@ -35,7 +35,8 @@
 // general
 #define CLEAR_SCREEN            "\e[1;1H\e[2J"
 #define cls()                   printf(CLEAR_SCREEN)
-#define MARGIN_LEN(w, t)        (w - strlen(t)) / 2
+#define R_MARGIN_LEN(w, t)      w - strlen(t)
+#define C_MARGIN_LEN(w, t)      (w - strlen(t)) / 2
 #define BLANK_CHAR              "x"
 #define LINES_LEFT(q)           SCREEN_HEIGHT - NOT_BODY_LINES - q
 
@@ -50,18 +51,23 @@
 ////////////////////////////////////////
 
 // menus
+void write_menu(struct Container, struct Body);
 void write_subsec_menu(struct Container, struct Body, struct Container);
 
 // print container
+// TODO: void print_title();
 char* get_cont_str(char*, struct Container);
 
 // print body
 void print_body(int, struct Body);
 void print_subsec(int, struct Body);
+char* trans_index(char*, index_type, int);
 void print_blank_line(int);
 
-// lower lv functions
-char* center(char*, const char*, int, char);
-char* trans_index(char*, index_type, int);
+// alignment
+char* get_aligned(char*, int, char*, align, char);
+char* align_right(char*, char*, int, char);
+char* center(char*, char*, int, char);
+char* get_margin(int, char*, char);
 
 #endif // SCREEN_H

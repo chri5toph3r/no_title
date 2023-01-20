@@ -19,21 +19,23 @@
 #include "screen.h"
 #endif // INC_SCREEN_H
 
+#ifndef INC_MAIN_MENU_H
+#define INC_MAIN_MENU_H
+#include "main_menu.h"
+#endif // INC_MAIN_MENU_H
+
 #ifndef INC_SETTINGS_H
 #define INC_SETTINGS_H
 #include "settings.h"
 #endif // INC_SETTINGS_H
 ////////////////////////////////////////
-#define DEF_SCREEN      0
+#define DEFAULT_SCREEN  0
 
-////////////////////////////////////////
 #ifndef MAIN_H
 #define MAIN_H
 
-#define MENUS_QUAN      1
-functions menus[1] = {
-    &_settings_menu
-};
+#define DEFAULT_SCREEN  0
+#define MENUS_QUAN      2
 
 int main(int, char const*[]);
 

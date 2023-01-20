@@ -6,6 +6,7 @@ void write_menu(struct Container header, struct Body body)
     cls();
     // TITLE
     char temp_cont[SCREEN_WIDTH+1];
+    // to fun: print_title()
     get_cont_str(temp_cont, header);
     printf("\n%s\n\n", temp_cont);
     
@@ -45,10 +46,17 @@ char* get_cont_str(char *cont_str, struct Container cont)
         for (int item=0; item<cont.texts_quan; item++)
         {
             char cont_item[SCREEN_WIDTH+1];
-            center(cont_item, cont.texts[item].content, cont.texts[item].width, cont.texts[item].sep);
+            get_aligned
+            (
+                cont_item, 
+                cont.texts[item].width, 
+                cont.texts[item].content, 
+                cont.texts[item].alignment, 
+                cont.texts[item].sep
+            );
             snprintf(buffer, cont.width, "%s%s", buffer, cont_item);
         }
-        center(cont_str, buffer, cont.width, cont.sep);
+        get_aligned(cont_str, cont.width, buffer, cont.alignment, cont.sep);
     }
     return cont_str;
 }
@@ -85,16 +93,18 @@ void print_subsec(int line, struct Body body) {
     int index = body.top_index + line;
     char index_str[10];
     char subsec_txt[SCREEN_WIDTH+1];
-    //get_aligned_str(subsec_txt...)
-    center(subsec_txt, body.subsec[index], body.width, ' ');
-    printf
-    (
-        NUMMED_SUBSEC,
-        trans_index(index_str, body.style, index+1),
-        subsec_txt
-        //body.subsec[index]
-    );
+    printf(trans_index(index_str, body.style, index+1));
+    // !: substract index string length!!!
+    printf(get_aligned(subsec_txt, body.width-3, body.subsec[index], body.alignment, body.sep));
 }
+
+char* trans_index(char *buffer, index_type style, int index)
+{
+    if (INT_LEN(index) > 10) return "0";
+    snprintf(buffer, 10, "%d. ", index);
+    return buffer;
+}
+
 
 void print_blank_line(int width)
 {
@@ -104,30 +114,53 @@ void print_blank_line(int width)
     }
 }
 
-// char* get_aligned_str()
-// char* align_right()
-
-char* center(char *r_str, const char *text, int width, char symbol)
+char* get_aligned(char *buffer, int width, char *text, align alignment, char symbol)
 {
-    int margin_len = MARGIN_LEN(width, text);
-    if (margin_len > SCREEN_WIDTH) margin_len = SCREEN_WIDTH;
+    switch (alignment)
+    {
+    case LEFT_TABBED:
+        snprintf(buffer, width+1, "\t%s", text);
+        break;
+    case CENTER:
+        center(buffer, text, width, symbol);
+        break;
+    case RIGHT:
+        align_right(buffer, text, width, symbol);
+        break;
+    default:
+        snprintf(buffer, width+1, text);
+        break;
+    }
+    return buffer;
+}
+
+char* align_right(char *buffer, char *text, int width, char symbol)
+{
     char margin[SCREEN_WIDTH+1];
+    get_margin(R_MARGIN_LEN(width, text), margin, symbol);
+    snprintf(buffer, width+1, "%s%s", margin, text);
+    return buffer;
+}
+
+char* center(char *buffer, char *text, int width, char symbol)
+{
+    char margin[SCREEN_WIDTH+1];
+    get_margin(C_MARGIN_LEN(width, text), margin, symbol);
+    snprintf(buffer, width, "%s%s%s", margin, text, margin);
+
+    // guard when the object can't be centered evenly, a hole creates at the end
+    if (width - strlen(buffer)) snprintf(buffer, width+1, "%s%c", buffer, symbol);
+    return buffer;
+}
+
+char* get_margin(int margin_len, char *margin, char symbol)
+{
+    if (margin_len > (SCREEN_WIDTH+1)) margin_len = SCREEN_WIDTH+1;
 
     for (int index=0; index<margin_len; index++)
     {
         margin[index] = symbol;
     }
     margin[margin_len] = '\0';
-    snprintf(r_str, width, "%s%s%s", margin, text, margin);
-
-    // when the object can't be centered evenly, a hole creates at the end
-    if (width - strlen(r_str)) snprintf(r_str, width+1, "%s%c", r_str, symbol);
-    return r_str;
-}
-
-char* trans_index(char *r_str, index_type style, int index)
-{
-    if (INT_LEN(index) > 10) return "0";
-    snprintf(r_str, 10, "%d", index);
-    return r_str;
+    return margin;
 }

@@ -16,16 +16,20 @@
 #define MM_T_WIDTH          SCREEN_WIDTH
 #define MM_T_TXT            "'THE MENU MANAGER'"
 #define MM_T_ALIGN          CENTER
-#define MM_T_SEP            ' '
+#define MM_T_SEP            '.'
 
-#define MM_B_OPT_QUAN       4
-#define MM_B_ALIGN          LEFT
-#define MM_B_STYLE          ARABIC_NUM
+#define MM_B_OPT_QUAN       3
 #define MM_B_DEFAULT_TOP    0
+#define MM_B_ALIGN          CENTER
+#define MM_B_SEP            '.'
+#define MM_B_STYLE          NONE
 
 
 item title_item[MM_T_TXTS_Q];
 struct Container mm_title;
+
+labels mm_options[MM_B_OPT_QUAN];
+struct Body mm_body;
 
 
 int _main_menu();

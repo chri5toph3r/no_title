@@ -6,7 +6,7 @@ typedef char *labels;
 
 typedef enum
 {
-    LEFT,
+    LEFT_TABBED,
     CENTER,
     RIGHT
 } align;
@@ -25,7 +25,7 @@ struct Item
 {
     int width;
     char *content;
-    align align;
+    align alignment;
     char sep;
 };
 typedef struct Item item;
@@ -35,7 +35,7 @@ struct Container
     int width;
     int texts_quan;
     item *texts;
-    align align;
+    align alignment;
     char sep;
 };
 
@@ -46,6 +46,7 @@ struct Body
     labels *subsec;
     int top_index;
     align alignment;
+    char sep;
     index_type style;
 };
 

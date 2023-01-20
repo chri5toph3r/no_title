@@ -15,7 +15,7 @@ struct Container sett_header = {
     SETT_H_SEP
 };
 
-labels options[SETT_B_OPT_QUAN] = {
+labels sett_options[SETT_B_OPT_QUAN] = {
     "GENERAL",
     "GRAPHICS",
     "SOUND",
@@ -24,9 +24,10 @@ labels options[SETT_B_OPT_QUAN] = {
 struct Body sett_body = {
     SCREEN_WIDTH,
     SETT_B_OPT_QUAN,
-    options,
+    sett_options,
     SETT_B_DEFAULT_TOP,
     SETT_B_ALIGN,
+    SETT_B_SEP,
     SETT_B_STYLE
 };
 
@@ -68,5 +69,5 @@ int _settings_menu()
     if (sett_body.top_index < 1) return -sett_body.top_index;
     sett_body.top_index --;
 
-    return 0;
+    return 1;
 }
