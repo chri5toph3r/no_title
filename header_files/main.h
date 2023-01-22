@@ -29,8 +29,6 @@
 #include "settings.h"
 #endif // INC_SETTINGS_H
 ////////////////////////////////////////
-#define DEFAULT_SCREEN  0
-
 #ifndef MAIN_H
 #define MAIN_H
 

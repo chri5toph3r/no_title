@@ -32,43 +32,48 @@
 #endif // SCREEN_DIMS
 ////////////////////////////////////////
 
-// general
+// printing
 #define CLEAR_SCREEN            "\e[1;1H\e[2J"
 #define cls()                   printf(CLEAR_SCREEN)
-#define R_MARGIN_LEN(w, t)      w - strlen(t)
-#define C_MARGIN_LEN(w, t)      (w - strlen(t)) / 2
 #define BLANK_CHAR              "x"
-#define LINES_LEFT(q)           SCREEN_HEIGHT - NOT_BODY_LINES - q
 
 // indexing
-#define NUMMED_SUBSEC           "%s.\t%s"
 #define INT_LEN(i)              floor(log10(fabs(i))) + 1
 
 #define UPPER_A_ASCII           65
 #define UPPER_Z_ASCII           90
 #define LOWER_A_ASCII           97
 #define LOWER_Z_ASCII           122
+
+// margins
+#define R_MARGIN_LEN(w, t)      w - strlen(t)
+#define C_MARGIN_LEN(w, t)      (w - strlen(t)) / 2
 ////////////////////////////////////////
 
-// menus
-// TODO: writemenu should be merged
-void write_menu(struct Container, struct Body);
-void write_subsec_menu(struct Container, struct Body, struct Container);
+// menu
+void write_menu(container, area, container);
 
-// print container |line|
-char* get_cont_str(char*, struct Container);
-
-// print body |container|
-void print_body(int, struct Body);
-// :here print_line
-void print_subsec(int, struct Body); // |item|
-char* trans_index(char*, index_type, int);
+/*
+TODO: prints take as arg and return char* /
+which is declared as char[SCREEN_HEIGHT][SCREEN_WIDTH]
+TODO: can work like:
+mentioned array is global, every function adds to it,
+at the end of write_menu function, 
+simple printing of that array occurrs
+*/
+// prints
+void print_area(int, area);                     // !: changed
+// void print_container(char*, container);      // !: changed
+void print_container(container);                // !: changed
+void print_item(item, int, index_type);         // !: changed order
+char* trans_index(char*, int, index_type);      // !: changed order
 void print_blank_line(int);
 
+// TODO: might as well be in separate file 
 // alignment
 char* get_aligned(char*, int, char*, align, char);
-char* align_right(char*, char*, int, char);
-char* center(char*, char*, int, char);
-char* get_margin(int, char*, char);
+char* align_right(char*, int, char*, char);         // !: changed order
+char* center(char*, int, char*, char);              // !: changed order
+char* get_margin(char*, int, char);                 // !: changed order
 
 #endif // SCREEN_H

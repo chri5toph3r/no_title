@@ -2,10 +2,10 @@
 #define TYPES_H
 
 typedef int (*functions)(void);
-typedef char *labels; // [-]
 
 typedef enum
 {
+    LEFT,
     LEFT_TABBED,
     CENTER,
     RIGHT
@@ -24,37 +24,35 @@ typedef enum
 struct Item
 {
     int width;
-    // [+] int height;
+    int height;
     char *content;
     align alignment;
-    char sep;
+    char symbol;
 };
 typedef struct Item item;
 
- // TODO: rename to line 
- // TODO: make it a type
 struct Container
 {
     int width;
-    // [+] int height;
-    int texts_quan;     // TODO: to int items_quan
-    item *texts;        // TODO: to item *items
+    int height;
+    int items_quan;
+    item *items;
     align alignment;
-    char sep;
+    char symbol;
 };
+typedef struct Container container;
 
-// TODO: rename to container 
-// TODO: make it a type
-struct Body
+struct Area
 {
     int width;
-    // [+] int height;
-    int subsec_quan;    // TODO: to int lines_quan
-    labels *subsec;     // TODO: to line *lines
+    int height;
+    int conts_quan;
     int top_index;
+    container *conts;
     align alignment;
-    char sep;
+    char symbol;
     index_type style;
 };
+typedef struct Area area;
 
 #endif // TYPES_H
