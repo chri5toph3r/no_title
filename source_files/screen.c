@@ -58,26 +58,27 @@ void print_area(int height, area area_obj)
     int cont_index = 0;
     while ((written_lines < height) && (cont_index < area_obj.conts_quan))
     {
-        printf("cont: %d\n", cont_index);
+        // printf("cont: %d\n", cont_index); dev
         int cont_lines = 0;
         while ((written_lines < height) && (cont_lines < area_obj.conts[cont_index].height))
         {
-            printf("%d\n", written_lines);
+            // printf("%d\n", written_lines); dev
             cont_lines++;
             written_lines++;
         }
-        printf(
-            "printing %d lines of cont%d (line count on %d)\n",
-            cont_lines, cont_index, written_lines
-        ); 
-        // print_container(area_obj.conts[cont_index]);
+        // dev
+        // printf(
+        //     "printing %d lines of cont%d (line count on %d)\n",
+        //     cont_lines, cont_index, written_lines
+        // ); 
+        print_container(area_obj.conts[cont_index]);
         cont_index++;
     }
     if (written_lines < height)
     {
         for (written_lines=written_lines; written_lines<height; written_lines++)
         {
-            printf("%d x\n", written_lines);
+            print_blank_line(area_obj.width);
         }
     }
     /* dev
@@ -134,7 +135,7 @@ void print_container(container cont_obj)
     // still tho, this will be changed when all the planned changes are done
     // get_aligned(cont_str, cont_obj.width, buffer, cont_obj.alignment, cont_obj.symbol); dev
     get_aligned(buffer, cont_obj.width, buffer, cont_obj.alignment, cont_obj.symbol);
-    printf(buffer);
+    printf(buffer); printf("\n");
     // return cont_str; dev
 }
 
