@@ -93,7 +93,7 @@ area sett_body = {
     SETT_B_STYLE
 };
 
-item footer_item[SETT_F_TXTS_Q] = {
+item footer_items[SETT_F_TXTS_Q] = {
     {
         SETT_LF_WIDTH,
         SETT_F_HEIGHT,
@@ -113,7 +113,7 @@ container sett_footer = {
     SCREEN_WIDTH,
     SETT_F_HEIGHT,
     SETT_F_TXTS_Q,
-    footer_item,
+    footer_items,
     SETT_F_ALIGN,
     SETT_F_SEP
 };

@@ -9,7 +9,7 @@ handling one dimension more sure will be tricky, hope i'll be able to pull it of
 
 void write_menu(container header, area body, container footer)
 {
-    // cls();
+    cls();
     // HEADER
     if (header.height > 0)
     {
@@ -129,7 +129,7 @@ void print_container(container cont_obj)
             cont_obj.items[item].alignment, 
             cont_obj.items[item].symbol
         );
-        snprintf(buffer, cont_obj.width, "%s%s", buffer, cont_item);
+        snprintf(buffer, cont_obj.width+1, "%s%s", buffer, cont_item);
     }
     // !: not sure if a buffer could've been the same as the text, so gotta check that after cleaning
     // still tho, this will be changed when all the planned changes are done
@@ -151,7 +151,7 @@ void print_item(item item_obj, int index, index_type style) {
     for now this has to do
     */
     int index_len = 0;
-    if (index != -1)
+    if (style != NONE)
     {
         index_len = INT_LEN(index);
         char index_str[10];
@@ -182,6 +182,7 @@ void print_blank_line(int width)
     {
         printf(BLANK_CHAR);
     }
+    printf("\n");
 }
 
 

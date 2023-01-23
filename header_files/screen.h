@@ -64,7 +64,7 @@ simple printing of that array occurrs
 // prints
 void print_area(int, area);                     // !: changed
 // void print_container(char*, container);      // !: changed
-void print_container(container);                // !: changed
+void print_container(container);                // !: changed 
 void print_item(item, int, index_type);         // !: changed order
 char* trans_index(char*, int, index_type);      // !: changed order
 void print_blank_line(int);

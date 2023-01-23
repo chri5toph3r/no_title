@@ -35,7 +35,7 @@
 #define SETT_F_TXTS_Q       2
 #define SETT_F_HEIGHT       1
 
-#define SETT_LF_WIDTH       SCREEN_WIDTH/3*2
+#define SETT_LF_WIDTH       SCREEN_WIDTH*2/3
 #define SETT_LF_TXT         "type neg num to exit"
 
 #define SETT_RF_WIDTH       SCREEN_WIDTH/3
@@ -52,7 +52,7 @@ item sett_texts[SETT_B_OPT_QUAN];
 container sett_options[SETT_B_OPT_QUAN];
 area sett_body;
 
-item footer_item[SETT_F_TXTS_Q];
+item footer_items[SETT_F_TXTS_Q];
 container sett_footer;
 
 
