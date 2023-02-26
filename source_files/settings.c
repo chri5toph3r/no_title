@@ -129,7 +129,7 @@ int _settings_menu()
 {
     char buffer[SETT_RF_WIDTH];
     set_opt_meter(buffer);
-    write_menu(sett_header, sett_body, sett_footer);
+    // write_menu(sett_header, sett_body, sett_footer);
     
     scanf("%i", &sett_body.top_index);
     if (sett_body.top_index < 1) return -sett_body.top_index;

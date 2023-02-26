@@ -1,6 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#define SPLIT_STR       "\n"
+
 typedef int (*functions)(void);
 
 typedef enum
@@ -9,7 +11,7 @@ typedef enum
     LEFT_TABBED,
     CENTER,
     RIGHT
-} align;
+} alignments;
 
 typedef enum
 {
@@ -21,36 +23,45 @@ typedef enum
     LOW_ALPHA
 } index_type;
 
-struct Item
+struct Dimensions
 {
     int width;
     int height;
+};
+typedef struct Dimensions dimensions;
+
+struct Alignment
+{
+    alignments align_to;
+    char align_char;
+};
+typedef struct Alignment alignment;
+
+
+struct Item
+{
+    dimensions *dims;
     char *content;
-    align alignment;
-    char symbol;
+    alignment *align;
 };
 typedef struct Item item;
 
 struct Container
 {
-    int width;
-    int height;
+    dimensions *dims;
     int items_quan;
     item *items;
-    align alignment;
-    char symbol;
+    alignment *align;
 };
 typedef struct Container container;
 
 struct Area
 {
-    int width;
-    int height;
+    dimensions *dims;
     int conts_quan;
     int top_index;
     container *conts;
-    align alignment;
-    char symbol;
+    alignment *align;
     index_type style;
 };
 typedef struct Area area;

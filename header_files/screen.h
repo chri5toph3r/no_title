@@ -1,3 +1,8 @@
+#ifndef INC_MATH_H
+#define INC_MATH_H
+#include <math.h>
+#endif // INC_MATH_H
+
 #ifndef INC_STDIO_H
 #define INC_STDIO_H
 #include <stdio.h>
@@ -7,11 +12,6 @@
 #define INC_STR_H
 #include <string.h>
 #endif // INC_STR_H
-
-#ifndef INC_MATH_H
-#define INC_MATH_H
-#include <math.h>
-#endif // INC_MATH_H
 
 ////////////////////////////////////////
 #ifndef INC_TYPES_H
@@ -51,7 +51,7 @@
 ////////////////////////////////////////
 
 // menu
-void write_menu(container, area, container);
+void write_menu(container*, area*, container*);
 
 /*
 TODO: prints take as arg and return char* /
@@ -62,18 +62,26 @@ at the end of write_menu function,
 simple printing of that array occurrs
 */
 // prints
-void print_area(int, area);                     // !: changed
+char** get_area(char**, area*);                     // !: changed
 // void print_container(char*, container);      // !: changed
-void print_container(container);                // !: changed 
-void print_item(item, int, index_type);         // !: changed order
-char* trans_index(char*, int, index_type);      // !: changed order
-void print_blank_line(int);
+char** get_container(char**, container*);                // !: changed 
+char** get_item(char**, item*);         // !: changed
+char* trans_index(char*, int, index_type*);      // !: changed order
+char* get_blank_line(char*, int, char);
+
+// screen functions
+int update_screen(char**, int);
+void refresh_screen();
+void setup_screen();
 
 // TODO: might as well be in separate file 
 // alignment
-char* get_aligned(char*, int, char*, align, char);
+char* get_aligned(char*, int, char*, alignment*);
 char* align_right(char*, int, char*, char);         // !: changed order
 char* center(char*, int, char*, char);              // !: changed order
 char* get_margin(char*, int, char);                 // !: changed order
+
+char *screen[SCREEN_HEIGHT];
+int screen_line;
 
 #endif // SCREEN_H
