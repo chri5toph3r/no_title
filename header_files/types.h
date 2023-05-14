@@ -25,9 +25,10 @@ typedef enum
 
 struct Dimensions
 {
-    int width;
     int height;
+    int width;
 };
+// width, height
 typedef struct Dimensions dimensions;
 
 struct Alignment
@@ -35,6 +36,7 @@ struct Alignment
     alignments align_to;
     char align_char;
 };
+// align, char
 typedef struct Alignment alignment;
 
 
@@ -44,6 +46,7 @@ struct Item
     char *content;
     alignment *align;
 };
+// .*dims, *content, *align
 typedef struct Item item;
 
 struct Container
@@ -53,6 +56,7 @@ struct Container
     item *items;
     alignment *align;
 };
+// .*dims, items_q, *items, *align
 typedef struct Container container;
 
 struct Area
@@ -64,6 +68,7 @@ struct Area
     alignment *align;
     index_type style;
 };
+// .*dims, conts_q, top_i, *conts, *align, style
 typedef struct Area area;
 
 #endif // TYPES_H

@@ -33,7 +33,9 @@
 #define MAIN_H
 
 #define DEFAULT_SCREEN  0
-#define MENUS_QUAN      2
+#define MENUS_QUAN      1
+
+functions menus[MENUS_QUAN];
 
 int main(int, char const*[]);
 

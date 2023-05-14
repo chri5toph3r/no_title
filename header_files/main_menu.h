@@ -20,8 +20,9 @@
 #define MM_T_FILL           '.'
 
 #define MM_B_HEIGHT         3
+#define MM_B_WIDTH          SCREEN_WIDTH
 #define MM_B_C_HEIGHT       1
-#define MM_B_OPT_QUAN       3
+#define MM_B_C_QUAN         3
 #define MM_B_C_TXT_QUAN     1
 #define MM_B_DEFAULT_TOP    0
 #define MM_B_ALIGN          CENTER
@@ -33,16 +34,17 @@ alignment mm_title_align;
 item title_item;
 container mm_title;
 
-// dimensions mm_texts_dims;
-// alignment mm_texts_align;
-// item mm_texts[MM_B_OPT_QUAN];
-// container mm_options[MM_B_OPT_QUAN];
-// dimensions mm_body_dims;
-// alignment mm_body_align;
+dimensions mm_texts_dims;
+alignment mm_texts_align;
+item mm_texts[MM_B_C_QUAN];
+container mm_options[MM_B_C_QUAN];
+dimensions mm_body_dims;
+alignment mm_body_align;
 dimensions zero_height;
 
 area mm_body;
 
+item footer_item;
 container mm_footer;
 
 int _main_menu();

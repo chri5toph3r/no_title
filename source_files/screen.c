@@ -7,25 +7,30 @@ not yet sure how to do it, but ill try my best
 handling one dimension more sure will be tricky, hope i'll be able to pull it off
 */
 
+// aaaa problem with the variablessss
+// local variables and pointers to them and they disappear and we got no text when refresh screem
+// gotta find a way to transfer pure text from temp arrays or sth 
+
 void write_menu(container *header, area *body, container *footer)
 {
     setup_screen();
 
     // HEADER
-    printf("header\n");   //dev
+    // printf("header\n");   //dev
     if (header->dims->height > 0)
     {
-        printf("create header\n");    // dev
+        // printf("create header\n");    // dev
         char *temp[SCREEN_HEIGHT];
         get_container(temp, header);
         update_screen(temp, header->dims->height);
+        refresh_screen();
     }
 
     // BODY
-    printf("body\n");     // dev
+    // printf("body\n");     // dev
     if (body->dims->height > 0)
     {
-        printf("create body");  // dev
+        // printf("create body\n");  // dev
         char *temp[SCREEN_HEIGHT];
         get_area(temp, body);
         int body_lines = SCREEN_HEIGHT - header->dims->height - footer->dims->height;
@@ -33,21 +38,21 @@ void write_menu(container *header, area *body, container *footer)
     }
     
     // FOOTER
-    printf("footer\n");   // dev
+    // printf("footer\n");   // dev
     if (footer->dims->height > 0)
     {
-        printf("create footer\n");    // dev
+        // printf("create footer\n");    // dev
         char *temp[SCREEN_HEIGHT];
         get_container(temp, footer);
         update_screen(temp, footer->dims->height);
+        refresh_screen();
     }
-
     refresh_screen();
 }
 
 char** get_area(char **area_arr, area *area_obj)
 {
-    printf("get_area\n");
+    // printf("get_area\n");
     if (area_obj->dims->height <= 0) return area_arr;      // guard
     // guard for incorrect top_index value
     if ((area_obj->top_index < 0) || (area_obj->top_index > area_obj->dims->height)) area_obj->top_index = 0;
@@ -77,7 +82,7 @@ char** get_area(char **area_arr, area *area_obj)
 
 char** get_container(char **cont_arr, container *cont_obj)
 {
-    printf("\tget_cont\n");
+    // printf("\tget_cont\n");
     if (cont_obj->dims->height <= 0) return cont_arr;      // guard
     
     int curr_cont_width = cont_obj->dims->width;
@@ -87,9 +92,11 @@ char** get_container(char **cont_arr, container *cont_obj)
         
         char *item_arr[SCREEN_HEIGHT];
         get_item(item_arr, &(cont_obj->items[item_i]));
+        // printf("itemarr0:%s\n", item_arr[0]);
         for (int item_line = 0; (item_line < cont_obj->items[item_i].dims->height) && (curr_cont_width > 0); item_line++)
         {
-            char buff[SCREEN_WIDTH+1];
+            cont_arr[item_line] = "";
+            static char buff[SCREEN_WIDTH+1];
             curr_cont_width -= snprintf
             (
                 buff, 
@@ -97,6 +104,7 @@ char** get_container(char **cont_arr, container *cont_obj)
                 "%s%s", cont_arr[item_line], item_arr[item_line]
             );
             cont_arr[item_line] = buff;
+            // printf(">>%s\n", cont_arr[item_line]);
         }
     }
     return cont_arr;
@@ -104,7 +112,7 @@ char** get_container(char **cont_arr, container *cont_obj)
 
 char** get_item(char **item_arr, item *item_obj)
 {
-    printf("\t\tget_item\n");
+    // printf("\t\tget_item\n");
     if (item_obj->dims->height <= 0) return item_arr;       // guard
 
     char *word = strtok(item_obj->content, SPLIT_STR);
@@ -113,12 +121,12 @@ char** get_item(char **item_arr, item *item_obj)
         item_arr[line] = "";
         if (word != NULL)
         {
-            printf("\t\t>%s\n", word);
-            printf("\t\t:%s\n", item_arr[line]);
-            char buff[SCREEN_WIDTH+1];
+            // printf("\t\t>%s\n", word);
+            // printf("\t\t:%s\n", item_arr[line]);
+            static char buff[SCREEN_WIDTH+1];
             get_aligned(buff, item_obj->dims->width, word, item_obj->align);
             item_arr[line] = buff;
-            printf("\t\t>:%s\n", item_arr[line]);
+            // printf("\t\t>:%s\n", item_arr[line]);
 		    word = strtok(NULL, SPLIT_STR);
         } else {
             get_blank_line(item_arr[line], item_obj->dims->width, item_obj->align->align_char);
@@ -151,7 +159,6 @@ char* get_blank_line(char* buffer, int width, char filler)
 
 int update_screen(char **update, int lines)
 {
-    printf("update_screen\n");
     int start_l = screen_line;
     for (screen_line = screen_line; (screen_line < SCREEN_HEIGHT) && (screen_line < (start_l + lines)); screen_line++)
     {
@@ -162,19 +169,19 @@ int update_screen(char **update, int lines)
 
 void refresh_screen()
 {
-    printf("refresh_screen\n");
-    cls();
+    // cls();
     for (int line = 0; line < screen_line; line++)
     {
-        printf(screen[line]);
+        printf("%s", screen[line]);
         screen[line] = '\0';
     }
     screen_line = 0;
 }
 
-void setup_screen()
+int setup_screen()
 {
     screen_line = 0;
+    return 0;
 }
 
 /////////////////////////////////////////////////////////
@@ -183,7 +190,7 @@ void setup_screen()
 
 char* get_aligned(char *buffer, int width, char *text, alignment *align)
 {
-    printf("/ get_aligned\n");
+    // printf("/ get_aligned\n");
     switch (align->align_to)
     {
     case LEFT_TABBED:
@@ -212,10 +219,10 @@ char* align_right(char *buffer, int width, char *text, char symbol)
 
 char* center(char *buffer, int width, char *text, char symbol)
 {
-    printf("/ align center\n");
+    // printf("/ align center\n");
     char margin[SCREEN_WIDTH+1];
     get_margin(margin, C_MARGIN_LEN(width, text), symbol);
-    printf("%d:%s\n", width, margin);
+    // printf("margin[%d]:%s\n", width, margin);
     snprintf(buffer, width, "%s%s%s", margin, text, margin);
 
     // guard when the object can't be centered evenly, a hole creates at the end

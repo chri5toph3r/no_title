@@ -72,7 +72,7 @@ char* get_blank_line(char*, int, char);
 // screen functions
 int update_screen(char**, int);
 void refresh_screen();
-void setup_screen();
+int setup_screen();
 
 // TODO: might as well be in separate file 
 // alignment
